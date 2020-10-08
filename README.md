@@ -10,3 +10,25 @@ The best way to install Tuzex/cqrs-pattern is using the [Composer](http://getcom
 ```sh
 $ composer require tuzex/cqrs-pattern
 ```
+
+Testing
+------------
+
+Validate composer
+
+```sh
+$ docker run --rm -v $PWD:/app -w /app -u 1000:1000 composer composer validate --no-check-all --strict
+```
+
+Static analysis
+
+```sh
+$ docker run --rm -v $PWD:/app -w /app -u 1000:1000 php:7.4-cli vendor/bin/phpstan analyse src -l max -c phpstan.neon
+```
+
+Coding standards
+
+```sh
+$ docker run --rm -v $PWD:/app -w /app -u 1000:1000 php:7.4-cli vendor/bin/ecs check src --config ecs.php
+$ docker run --rm -v $PWD:/app -w /app -u 1000:1000 php:7.4-cli vendor/bin/ecs check src --config ecs.php --fix
+```
