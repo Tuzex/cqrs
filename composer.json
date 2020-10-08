@@ -1,5 +1,5 @@
 {
-  "name": "tuzex/cqrs-pattern",
+  "name": "tuzex/cqrs",
   "description": "Common interfaces for implementing the CQRS (Command Query Responsibility Segregation) pattern.",
   "type": "symfony-bundle",
   "license": "MIT",
