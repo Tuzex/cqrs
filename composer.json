@@ -24,28 +24,5 @@
   "require-dev": {
     "phpstan/phpstan": "0.12.*",
     "symplify/easy-coding-standard": "8.3.*"
-  },
-  "scripts": {
-    "check:composer": "@composer validate --no-check-all --strict",
-    "check": [
-      "@check:composer"
-    ],
-    "test:static": "phpstan analyse src -l max -c phpstan.neon",
-    "test": [
-      "@test:static"
-    ],
-    "cs": [
-      "ecs check src --config easy-coding-standard.yml"
-    ],
-    "cs:fix": [
-      "ecs check src --config easy-coding-standard.yml --fix",
-      "@cs"
-    ]
-  },
-  "scripts-descriptions": {
-    "check": "Validate the composer.json file.",
-    "test": "Run all unit tests and the static analysis of codes.",
-    "cs": "Run coding standards checkers.",
-    "cs-fix": "Fix-ups the code in accordance with our coding standards."
   }
 }
