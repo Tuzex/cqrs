@@ -21,11 +21,15 @@ jobs:
     - stage: Composer validation
       script: composer validate --no-check-all --strict
 
-    - stage: Static analyse
-      script: vendor/bin/phpstan analyse src -l max -c phpstan.neon
+    - stage: Unit tests
+      script: vendor/bin/phpunit -c phpunit.xml
+
+    - stage: Static analysis
+      script: vendor/bin/phpstan analyse -c phpstan.neon
 
     - stage: Coding standards
-      script: vendor/bin/ecs check src --config ecs.php
+      script: vendor/bin/ecs check -c ecs.php
 
 notifications:
   slack: codea-eu:7l0xhGhVfV5viFmSeyaHA6Pl
+
