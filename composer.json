@@ -1,6 +1,6 @@
 {
   "name": "tuzex/cqrs",
-  "description": "Common interfaces for implementing the CQRS (Command Query Responsibility Segregation) pattern.",
+  "description": "Implementation of CQRS (Command Query Responsibility Segregation) based on the Symfony Messenger",
   "type": "library",
   "license": "MIT",
   "authors": [
@@ -21,6 +21,7 @@
     "psr-4": {
       "Tuzex\\Cqrs\\Test\\": "tests"
     }
+  },
   "require": {
     "php": "^7.4",
     "symfony/messenger": "4.3.*|4.4.*|5.*"
