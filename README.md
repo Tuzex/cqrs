@@ -1,5 +1,5 @@
 # Tuzex / cqrs
-[![Build Status](https://travis-ci.org/Tuzex/cqrs.svg?branch=master)](https://travis-ci.org/Tuzex/cqrs)
+[![Coverage Status](https://coveralls.io/repos/github/Tuzex/cqrs/badge.svg?branch=master)](https://coveralls.io/github/Tuzex/cqrs?branch=master)
 
 Implementation of CQRS (Command Query Responsibility Segregation) based on Symfony Messenger.
 
