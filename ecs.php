@@ -25,8 +25,10 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     ]);
 
     $parameters->set(Option::SKIP, [
+        PhpCsFixer\Fixer\Basic\BracesFixer::class => null,
         PhpCsFixer\Fixer\Operator\NotOperatorWithSuccessorSpaceFixer::class => null,
-        PropertyTypeHintSniff::class . 'MissingTraversableTypeHintSpecification' => null,
-        ReturnTypeHintSniff::class . 'MissingTraversableTypeHintSpecification' => null,
+        PropertyTypeHintSniff::class . '.MissingTraversableTypeHintSpecification' => null,
+        ReturnTypeHintSniff::class . '.MissingTraversableTypeHintSpecification' => null,
+        SlevomatCodingStandard\Sniffs\Classes\DisallowMultiPropertyDefinitionSniff::class . '.DisallowedMultiPropertyDefinition' => null,
     ]);
 };

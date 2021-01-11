@@ -12,12 +12,9 @@ use Tuzex\Cqrs\Exception\QueryResultNotFoundException;
 
 final class MessengerQueryBus implements QueryBus
 {
-    private MessageBusInterface $messageBus;
-
-    public function __construct(MessageBusInterface $messageBus)
-    {
-        $this->messageBus = $messageBus;
-    }
+    public function __construct(
+        private MessageBusInterface $messageBus
+    ) {}
 
     public function execute(Query $query): object
     {
