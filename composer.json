@@ -10,6 +10,9 @@
     }
   ],
   "config": {
+    "platform": {
+      "php": "8.0.1"
+    },
     "sort-packages": true
   },
   "autoload": {
@@ -23,7 +26,7 @@
     }
   },
   "require": {
-    "php": "^7.4",
+    "php": "8.*",
     "symfony/messenger": "4.3.*|4.4.*|5.*"
   },
   "require-dev": {
