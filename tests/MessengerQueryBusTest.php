@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Tuzex\Cqrs\Test;
 
-use Exception;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Messenger\Envelope;
+use Symfony\Component\Messenger\Exception\NoHandlerForMessageException;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Messenger\Stamp\HandledStamp;
 use Tuzex\Cqrs\Exception\QueryHandlerNotFoundException;
@@ -56,9 +56,7 @@ final class MessengerQueryBusTest extends TestCase
             ->willReturn($envelope);
 
         if (!$handle) {
-            $dispatchMethod->willThrowException(
-                new QueryHandlerNotFoundException($query, new Exception())
-            );
+            $dispatchMethod->willThrowException(new NoHandlerForMessageException());
         }
 
         if (!$result) {

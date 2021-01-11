@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Tuzex\Cqrs\Test;
 
-use Exception;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Messenger\Envelope;
+use Symfony\Component\Messenger\Exception\NoHandlerForMessageException;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Tuzex\Cqrs\Command;
 use Tuzex\Cqrs\Exception\CommandHandlerNotFoundException;
@@ -41,9 +41,7 @@ final class MessengerCommandBusTest extends TestCase
             );
 
         if (!$handle) {
-            $dispatchMethod->willThrowException(
-                new CommandHandlerNotFoundException($command, new Exception())
-            );
+            $dispatchMethod->willThrowException(new NoHandlerForMessageException());
         }
 
         return $messageBus;
