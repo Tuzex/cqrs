@@ -1,41 +1,40 @@
 name: Tests
-
 on:
   push:
     branches:
       - master
 
 jobs:
-  unit-tests:
+  phpunit:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php: ['8.0']
+        php: [ '8.0' ]
 
-    name: PHP ${{ matrix.php }} tests
+    name: PHP ${{ matrix.php }} - Unit Tests
     steps:
-        -   uses: actions/checkout@v2
-        -   uses: shivammathur/setup-php@v1
-            with:
-                php-version: ${{ matrix.php }}
-                coverage: none
+      - uses: actions/checkout@v2
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: none
 
-        -   run: composer install --no-progress
-        -   run: vendor/bin/phpunit -c phpunit.xml
-    
-  static-analyse:    
+      - run: composer install --no-progress
+      - run: vendor/bin/phpunit -c phpunit.xml
+
+  phpstan:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php: ['8.0']
+        php: [ '8.0' ]
 
-    name: PHP ${{ matrix.php }} tests
+    name: PHP ${{ matrix.php }} - Static Analyse
     steps:
-        -   uses: actions/checkout@v2
-        -   uses: shivammathur/setup-php@v1
-            with:
-                php-version: ${{ matrix.php }}
-                coverage: none
+      - uses: actions/checkout@v2
+      - uses: shivammathur/setup-php@v1
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: none
 
-        -   run: composer install --no-progress
-        -   run: vendor/bin/phpstan analyse -c phpstan.neon
+      - run: composer install --no-progress
+      - run: vendor/bin/phpstan analyse -c phpstan.neon
