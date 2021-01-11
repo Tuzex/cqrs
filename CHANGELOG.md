@@ -9,5 +9,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - **[BC BREAK]** Bump minimal PHP version to 8.*
 - Use constructor property promotion
+- Remove obsolete ```get_class``` from exceptions
 
 [Unreleased]: https://github.com/Tuzex/responder/compare/v1.0.0...HEAD
