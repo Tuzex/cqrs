@@ -45,10 +45,8 @@ final class MessengerQueryBusTest extends TestCase
 
     private function mockMessageBus(Query $query, bool $handle = true, bool $result = true): MessageBusInterface
     {
-        $envelope = new Envelope($query);
-        $envelope = $envelope->with(
-            new HandledStamp($query, QueryHandler::class)
-        );
+        $stamps = $result ? [new HandledStamp($query, QueryHandler::class)] : [];
+        $envelope = new Envelope($query, $stamps);
 
         $messageBus = $this->createMock(MessageBusInterface::class);
         $dispatchMethod = $messageBus->expects($this->once())
@@ -57,12 +55,6 @@ final class MessengerQueryBusTest extends TestCase
 
         if (!$handle) {
             $dispatchMethod->willThrowException(new NoHandlerForMessageException());
-        }
-
-        if (!$result) {
-            $dispatchMethod->willThrowException(
-                new QueryResultNotFoundException($query)
-            );
         }
 
         return $messageBus;
