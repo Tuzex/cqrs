@@ -8,7 +8,7 @@ use Symfony\Component\Messenger\Exception\NoHandlerForMessageException;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Messenger\Stamp\HandledStamp;
 use Tuzex\Cqrs\Exception\QueryHandlerNotFoundException;
-use Tuzex\Cqrs\Exception\QueryResultNotFoundException;
+use Tuzex\Cqrs\Exception\InvalidQueryResultException;
 
 final class MessengerQueryBus implements QueryBus
 {
@@ -25,8 +25,8 @@ final class MessengerQueryBus implements QueryBus
         }
 
         $stamp = $envelope->last(HandledStamp::class);
-        if (!$stamp instanceof HandledStamp) {
-            throw new QueryResultNotFoundException($query);
+        if (!$stamp instanceof HandledStamp || !is_object($stamp->getResult())) {
+            throw new InvalidQueryResultException($query);
         }
 
         return $stamp->getResult();

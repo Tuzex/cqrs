@@ -7,10 +7,10 @@ namespace Tuzex\Cqrs\Exception;
 use LogicException;
 use Tuzex\Cqrs\Query;
 
-final class QueryResultNotFoundException extends LogicException
+final class InvalidQueryResultException extends LogicException
 {
     public function __construct(Query $query)
     {
-        parent::__construct(sprintf('Result from "%s" not found.', $query::class));
+        parent::__construct(sprintf('Result from "%s" is invalid.', $query::class));
     }
 }
