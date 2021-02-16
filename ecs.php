@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-use SlevomatCodingStandard\Sniffs\TypeHints\PropertyTypeHintSniff;
-use SlevomatCodingStandard\Sniffs\TypeHints\ReturnTypeHintSniff;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symplify\EasyCodingStandard\ValueObject\Option;
 use Symplify\EasyCodingStandard\ValueObject\Set\SetList;
@@ -18,8 +16,6 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $parameters->set(Option::SETS, [
         SetList::COMMON,
         SetList::CLEAN_CODE,
-        SetList::DEAD_CODE,
-        SetList::PHP_71,
         SetList::PSR_12,
         SetList::SYMFONY,
     ]);
@@ -27,8 +23,5 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $parameters->set(Option::SKIP, [
         PhpCsFixer\Fixer\Basic\BracesFixer::class => null,
         PhpCsFixer\Fixer\Operator\NotOperatorWithSuccessorSpaceFixer::class => null,
-        PropertyTypeHintSniff::class . '.MissingTraversableTypeHintSpecification' => null,
-        ReturnTypeHintSniff::class . '.MissingTraversableTypeHintSpecification' => null,
-        SlevomatCodingStandard\Sniffs\Classes\DisallowMultiPropertyDefinitionSniff::class . '.DisallowedMultiPropertyDefinition' => null,
     ]);
 };
