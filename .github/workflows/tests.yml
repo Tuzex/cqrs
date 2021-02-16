@@ -5,6 +5,22 @@ on:
       - master
 
 jobs:
+  composer:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: [ '8.0' ]
+
+    name: PHP ${{ matrix.php }} - Composer validation
+    steps:
+      - uses: actions/checkout@v2
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: none
+
+      - run: composer validate --no-check-all --strict
+
   phpunit:
     runs-on: ubuntu-latest
     strategy:
@@ -38,3 +54,20 @@ jobs:
 
       - run: composer install --no-progress
       - run: vendor/bin/phpstan analyse -c phpstan.neon
+
+  ecs:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: [ '8.0' ]
+
+    name: PHP ${{ matrix.php }} - Coding Standards
+    steps:
+      - uses: actions/checkout@v2
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: none
+
+      - run: composer install --no-progress
+      - run: vendor/bin/ecs check -c ecs.php
