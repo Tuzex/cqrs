@@ -7,8 +7,8 @@ namespace Tuzex\Cqrs;
 use Symfony\Component\Messenger\Exception\NoHandlerForMessageException;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Messenger\Stamp\HandledStamp;
-use Tuzex\Cqrs\Exception\QueryHandlerNotFoundException;
 use Tuzex\Cqrs\Exception\InvalidQueryResultException;
+use Tuzex\Cqrs\Exception\QueryHandlerNotFoundException;
 
 final class MessengerQueryBus implements QueryBus
 {
