@@ -5,19 +5,32 @@ on:
       - master
 
 jobs:
-  ecs:
+  coveralls:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
         php: [ '8.0' ]
 
-    name: PHP ${{ matrix.php }} - Coding Standards
+    name: Code Coverage
     steps:
-      - uses: actions/checkout@v2
-      - uses: shivammathur/setup-php@v2
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          coverage: none
+          coverage: pcov
 
-      - run: composer install --no-progress
-      - run: vendor/bin/ecs check -c ecs.php
+      - name: Composer install
+        run: composer install --no-progress
+
+      - name: Generate code coverage
+        run: vendor/bin/phpunit -c phpunit.xml --coverage-clover clover.xml
+
+      - name: Upload to Coveralls
+        env:
+          COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          composer global require cedx/coveralls
+          coveralls clover.xml
