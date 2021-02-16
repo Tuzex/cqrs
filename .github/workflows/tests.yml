@@ -6,7 +6,7 @@ on:
 
 jobs:
   composer:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     strategy:
       matrix:
         php: [ '8.0' ]
@@ -22,7 +22,7 @@ jobs:
       - run: composer validate --no-check-all --strict
 
   phpunit:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     strategy:
       matrix:
         php: [ '8.0' ]
@@ -39,7 +39,7 @@ jobs:
       - run: vendor/bin/phpunit -c phpunit.xml
 
   phpstan:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     strategy:
       matrix:
         php: [ '8.0' ]
@@ -47,7 +47,7 @@ jobs:
     name: PHP ${{ matrix.php }} - Static Analyse
     steps:
       - uses: actions/checkout@v2
-      - uses: shivammathur/setup-php@v1
+      - uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
           coverage: none
@@ -56,7 +56,7 @@ jobs:
       - run: vendor/bin/phpstan analyse -c phpstan.neon
 
   ecs:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     strategy:
       matrix:
         php: [ '8.0' ]
