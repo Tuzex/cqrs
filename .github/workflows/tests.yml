@@ -13,13 +13,17 @@ jobs:
 
     name: PHP ${{ matrix.php }} - Composer validation
     steps:
-      - uses: actions/checkout@v2
-      - uses: shivammathur/setup-php@v2
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
           coverage: none
 
-      - run: composer validate --no-check-all --strict
+      - name: Validate composer.json
+        run: composer validate --no-check-all --strict
 
   phpunit:
     runs-on: ubuntu-20.04
@@ -29,14 +33,20 @@ jobs:
 
     name: PHP ${{ matrix.php }} - Unit Tests
     steps:
-      - uses: actions/checkout@v2
-      - uses: shivammathur/setup-php@v2
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
           coverage: none
 
-      - run: composer install --no-progress
-      - run: vendor/bin/phpunit -c phpunit.xml
+      - name: Install dependencies
+        run: composer install --no-progress
+
+      - name: Run unit tests
+        run: vendor/bin/phpunit -c phpunit.xml
 
   phpstan:
     runs-on: ubuntu-20.04
@@ -46,14 +56,20 @@ jobs:
 
     name: PHP ${{ matrix.php }} - Static Analyse
     steps:
-      - uses: actions/checkout@v2
-      - uses: shivammathur/setup-php@v2
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
           coverage: none
 
-      - run: composer install --no-progress
-      - run: vendor/bin/phpstan analyse -c phpstan.neon
+      - name: Install dependencies
+        run: composer install --no-progress
+
+      - name: Run static analyse
+        run: vendor/bin/phpstan analyse -c phpstan.neon
 
   ecs:
     runs-on: ubuntu-20.04
@@ -63,11 +79,17 @@ jobs:
 
     name: PHP ${{ matrix.php }} - Coding Standards
     steps:
-      - uses: actions/checkout@v2
-      - uses: shivammathur/setup-php@v2
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
           coverage: none
 
-      - run: composer install --no-progress
-      - run: vendor/bin/ecs check -c ecs.php
+      - name: Install dependencies
+        run: composer install --no-progress
+
+      - name: Check coding standards
+        run: vendor/bin/ecs check -c ecs.php

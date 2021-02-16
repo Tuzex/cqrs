@@ -22,10 +22,10 @@ jobs:
           php-version: ${{ matrix.php }}
           coverage: pcov
 
-      - name: Composer install
+      - name: Install dependencies
         run: composer install --no-progress
 
-      - name: Generate code coverage
+      - name: Generate clover.xml
         run: vendor/bin/phpunit -c phpunit.xml --coverage-clover clover.xml
 
       - name: Upload to Coveralls
