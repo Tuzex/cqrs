@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **[BC BREAK]** Remove `symfony/messenger` implementations
 - **[BC BREAK]** Change name of the bus main method
+- **[BC BREAK]** Change `QueryBus` return type
 
 ## [2.0.0] - 2021-01-12
 
