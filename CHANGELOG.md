@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 - **[BC BREAK]** Remove `symfony/messenger` implementations
+- **[BC BREAK]** Change name of the bus main method
 
 ## [2.0.0] - 2021-01-12
 

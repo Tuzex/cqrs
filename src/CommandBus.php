@@ -6,5 +6,5 @@ namespace Tuzex\Cqrs;
 
 interface CommandBus
 {
-    public function execute(Command $command): void;
+    public function dispatch(Command $command): void;
 }
