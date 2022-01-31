@@ -5,7 +5,6 @@
 
 [![Build status](https://img.shields.io/github/workflow/status/tuzex/cqrs/Tests?style=flat-square)](https://github.com/Tuzex/cqrs/actions?query=workflow%3ATests)
 [![Code Quality](https://img.shields.io/scrutinizer/quality/g/tuzex/cqrs?style=flat-square)](https://scrutinizer-ci.com/g/Tuzex/cqrs/?branch=master)
-[![Coverage Status](https://img.shields.io/coveralls/github/Tuzex/cqrs?style=flat-square)](https://coveralls.io/github/Tuzex/cqrs?branch=master)
 
 A set of abstractions for CQRS (Command Query Responsibility Segregation).
 
